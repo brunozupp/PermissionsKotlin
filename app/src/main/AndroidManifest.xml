@@ -6,9 +6,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- More Sensitive Permission   -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!--    On Android 10 (API level 29) and higher, you must declare the ACCESS_BACKGROUND_LOCATION permission in your app's manifest in order to request background location access at runtime. On earlier versions of Android, when your app receives foreground location access, it automatically receives background location access as well.-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" android:minSdkVersion="29" />
+
+    <!--    For android versions which less than API 29 (android 10)-->
+    <!--    you need to request WRITE_EXTERNAL_STORAGE .-->
+    <!--    otherwise it's already granted because of ScopedStorage that released at android 11.-->
+    <!--    Keep in mind that, on devices that run Android 10 (API level 29) or higher, your app can contribute to well-defined media collections such as MediaStore.Downloads without requesting any storage-related permissions.-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
 
     <application
         android:allowBackup="true"
